@@ -1,21 +1,39 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="app-container">
 
-<router-outlet></router-outlet>
+  <div class="side">
+    <button class="item ui-button" *ngFor="let device of devices">{{device.name}}</button>
+    <button class="item new ui-button"><fa-icon icon="plus"></fa-icon></button>
+  </div>
+
+  <div class="main">
+
+    <div class="connection">
+      <h1 class="brand">
+        Robotie
+      </h1>
+      <div class="current">
+        <strong>Currently controlling:</strong><br>
+        {{device.name}} <span class="success">(online)</span>
+      </div>
+      <div class="actions">
+        <button (click)="serverConnect()" class="ui-button">Connect to robot</button>
+        <button class="ui-button disabled">Logs</button>
+        <button class="ui-button disabled">Settings</button>
+      </div>
+    </div>
+
+    <div class="navigator">
+      <button routerLink="remote" routerLinkActive="active" class="ui-button">Remote control</button>
+      <button routerLink="templates" routerLinkActive="active" class="ui-button">Message templates</button>
+      <button routerLink="dialogs" routerLinkActive="active" class="ui-button">Dialog builder</button>
+      <button routerLink="scheduler" routerLinkActive="active" class="ui-button">Schedule builder</button>
+      <button routerLink="motions" routerLinkActive="active" class="ui-button">Motion builder</button>
+    </div>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    
+  </div>
+
+</div>

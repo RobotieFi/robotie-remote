@@ -1,1 +1,154 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Font variables
+$mainfonts: roboto, arial, helvetica;
+
+// Color variables
+$black: rgb(17, 17, 17);
+$gray: rgb(54, 54, 54);
+$white: rgb(245, 245, 245);
+$accent: rgb(20, 157, 243);
+
+$success: rgb(0, 204, 34);
+
+$sidebg: $gray;
+$mainbg: lighten($gray, 20);
+
+// Form items
+button.ui-button{
+    display: inline-block;
+    background-color: $white;
+    color: $black;
+    border: 0;
+    font-family: $mainfonts;
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 1em;
+
+    &:hover{
+        background-color: darken($white, 20);
+    }
+
+    &:focus{
+        outline:none;
+    }
+
+    &.active{
+        background-color: darken($white, 80);
+        color: $white;
+    }
+
+    &.full{
+        width: 100%;
+    }
+
+    &.reverse{
+        background: $gray;
+        color: $white;
+    }
+
+    &.disabled{
+        background: $gray;
+        color: lighten($gray,20);
+        cursor: not-allowed;
+    }
+}
+
+textarea{
+    font-family: $mainfonts;
+}
+
+.chip{
+    background-color: lighten($gray, 10);
+    border-radius: 1em;
+    padding: 0 0.5em;
+    height: 1.5em;
+    color: $white;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+body{
+    font-family: $mainfonts;
+    margin: 0;
+}
+
+.app-container{
+    display: flex;
+    overflow: hidden;
+
+    .side{
+        background-color: $sidebg;
+        height: 100vh;
+    
+    
+        .item{
+            border-radius: 100%;
+            width: 42px;
+            height: 42px;
+            background-color: lighten($gray, 20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px;
+
+            &:hover{
+                border: 2px solid $accent;
+            }
+        }
+    }
+
+    .main{
+        background-color: $mainbg;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: scroll;
+
+        .connection{
+            padding: 1em;
+            display: flex;
+            align-items: center;
+
+            .brand{
+                text-transform: uppercase;
+                color: $accent;
+                margin: 0 1em 0 0;
+            }
+
+            .actions{
+                margin-left: auto;
+            }
+        }
+
+        .navigator{
+            background-color: lighten($gray,10);
+            padding: 1em;
+        }
+
+        .content{
+            flex: 1;
+        }
+
+    }
+}
+
+.panels{
+    display: flex;
+
+    .side{
+        flex-basis: 200px;
+        background: $white;
+    }
+
+    .main{
+        flex: 1;
+    }
+}
+
+.success{
+    color: $success;
+}

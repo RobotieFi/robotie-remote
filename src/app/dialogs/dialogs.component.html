@@ -1,0 +1,39 @@
+<h4>Dialog builder</h4>
+<div class="tree">
+  <div *ngFor="let level of dialogtree" class="level">
+    <div class="content">
+      Hear: {{ level.hear }}<br>
+      Say: {{ level.say }}<br>
+      <span *ngIf="level.action">Action: {{ level.action }}</span>
+      <div class="actions">
+        <button>Add response</button>
+        <button *ngIf="!level.continue">Delete item</button>
+        <button *ngIf="level.continue">Delete branch ({{ level.continue.length }})</button>
+      </div>
+    </div>
+    <div class="level" *ngFor="let level2 of level.continue">
+      <div class="content">
+        Hear: {{ level2.hear }}<br>
+        Say: {{ level2.say }}<br>
+        <span *ngIf="level2.action">Action: {{ level2.action }}</span>
+        <div class="actions">
+          <button>Add response</button>
+          <button *ngIf="!level2.continue">Delete item</button>
+          <button *ngIf="level2.continue">Delete branch ({{ level2.continue.length }})</button>
+        </div>
+      </div>
+      <div class="level" *ngFor="let level3 of level2.continue">
+        <div class="content">
+          Hear: {{ level3.hear }}<br>
+          Say: {{ level3.say }}<br>
+          <span *ngIf="level3.action">Action: {{ level3.action }}</span>
+          <div class="actions">
+            <button>Add response</button>
+            <button *ngIf="!level3.continue">Delete item</button>
+            <button *ngIf="level3.continue">Delete branch ({{ level3.continue.length }})</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

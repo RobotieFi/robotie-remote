@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'robotie-remote-angular';
+
+  devices = [
+    {
+      name: 'Kebbi',
+      id: '1',
+      type: 'kebbi'
+    }
+  ];
+
+  device = {
+    name: 'Kebbi'
+  };
+
 }

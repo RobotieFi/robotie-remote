@@ -1,0 +1,44 @@
+@import '../../styles.scss';
+
+.folders{
+    .folder{
+        cursor: pointer;
+        display: block;
+        border: 0;
+        width: 100%;
+        text-align: left;
+        background: $white;
+        
+        &.active{
+            background: darken($white, 20);
+        }
+
+        &:hover{
+            background: darken($white, 10);
+        }
+    }
+}
+
+.messages{
+
+    .message{
+        margin: 1em;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        padding: 0.5em;
+        border-radius: 0.5em;
+    
+        .section{
+            margin-right: 0.5em;
+        }
+
+        .actions{
+            margin-left: auto;
+
+            button{
+                border: 1px solid $gray;
+            }
+        }
+    }
+}

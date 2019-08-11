@@ -1,0 +1,120 @@
+<div class="remote-controls">
+  <div class="message-list">
+      <div class="messages">
+          <div class="message" *ngFor="let message of messages">
+              <div class="date section">{{ message.date }}</div>
+              <div class="lang chip section">{{ message.lang }}</div>
+              <div class="text section">
+                  {{ message.value.join('') }}
+              </div>
+              <div class="actions section">
+                <button class="ui-button"><fa-icon icon="play"></fa-icon></button>
+                <button class="ui-button"><fa-icon icon="calendar"></fa-icon></button>
+                <button class="ui-button"><fa-icon icon="save"></fa-icon></button>
+              </div>
+            </div>
+      </div>
+      <div class="send-message">
+        <div ngbDropdown class="d-inline-block section">
+          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Language</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="lang = 'fi'">Finnish</button>
+            <button ngbDropdownItem (click)="lang = 'en'">English</button>
+            <button ngbDropdownItem (click)="lang = 'sv'">Swedish</button>
+          </div>
+        </div>
+        <div class="message">
+          <span class="chip">{{ lang }}</span>
+          <textarea placeholder="Write message" [value]="messageTxt" (change)="messageTxt = $event.target.value" #messageBox></textarea>
+          <div class="add-move">
+              Add move:
+              <button (click)="open(content)" class="add"><fa-icon icon="plus"></fa-icon></button>
+              Add face:
+              <button (click)="open(face)" class="add"><fa-icon icon="smile"></fa-icon></button>
+              Add media:
+              <button (click)="open(media)" class="add"><fa-icon icon="paperclip"></fa-icon></button>
+          </div>
+        </div>
+        <div class="actions">
+          <div ngbDropdown>
+            <button class="ui-button" id="dropdownConfig" ngbDropdownToggle><fa-icon icon="calendar"></fa-icon></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+              <input type="date" [value]="timing.date" />
+              <input type="time" [value]="timing.time" />
+            </div>
+          </div>
+          <button class="ui-button"><fa-icon icon="save"></fa-icon></button>
+          <button (click)="play(messageBox.value, lang)" class="ui-button"><fa-icon icon="play"></fa-icon></button>
+        </div>
+      </div>
+  </div>
+  <div class="motor-control">
+    <h3>Head</h3>
+    <sup>You can also use the arrow keys</sup>
+    <div class="arrows">
+      <div class="up"><fa-icon icon="chevron-up"></fa-icon></div>
+      <div class="down"><fa-icon icon="chevron-down"></fa-icon></div>
+      <div class="left"><fa-icon icon="chevron-left"></fa-icon></div>
+      <div class="right"><fa-icon icon="chevron-right"></fa-icon></div>
+    </div>
+    <h3>Chassis</h3>
+    <sup>You can also use WASD key</sup>
+    <div class="arrows">
+        <div class="up"><fa-icon icon="chevron-up"></fa-icon></div>
+        <div class="down"><fa-icon icon="chevron-down"></fa-icon></div>
+        <div class="left"><fa-icon icon="chevron-left"></fa-icon></div>
+        <div class="right"><fa-icon icon="chevron-right"></fa-icon></div>
+    </div>
+    <h3>Speed</h3>
+    <div class="speed">
+      <div>Slow</div>
+      <input type="range" min="1" max="100" value="50" class="speed-slider">
+      <div>Fast</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Select move</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let move of moves" class="line"><span>{{ move }}</span> <button (click)="addAction('pose', move)" class="ui-button">Add move</button></div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Done</button>
+  </div>
+</ng-template>
+
+<ng-template #face let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Select face</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let face of faces" class="line"><span>{{ face }}</span> <button (click)="addAction('face', face)" class="ui-button">Add face</button></div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Done</button>
+  </div>
+</ng-template>
+
+<ng-template #media let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Choose media</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Done</button>
+  </div>
+</ng-template>
